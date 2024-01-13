@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: NubikCubik5
   m_EditorClassIdentifier: 
   Name: Nubik1
-  Color: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 1}
   Scale: 6
-  PositionX: 5
+  PositionX: -2
+  PositionY: -7
+  Color: {r: 0.23529413, g: 0.23529413, b: 0.23529413, a: 1}
+  Shape: {fileID: 4538111695933281186, guid: e635c76350028924c96688dc2584fb37, type: 3}
