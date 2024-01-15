@@ -58,7 +58,7 @@ public class NubikSorter : MonoBehaviour
             GameObject key = _nubiks[i];
             for (int j = i - 1; j >= 0;)
             {
-                if (key.transform.localScale.x < _nubiks[j].transform.localScale.x)
+                if (key.transform.position.x < _nubiks[j].transform.position.x)
                 {
                     _nubiks[j + 1] = _nubiks[j];
                     j--;
@@ -81,17 +81,28 @@ public class NubikSorter : MonoBehaviour
             int min = i;
             for (int j = i + 1; j < arraysize; j++)
             {
-                if (_nubiks[j].transform.localScale.x < _nubiks[min].transform.localScale.x)
+                if (CompareColors(_nubiks[j].GetComponent<Renderer>().material.color,
+                                  _nubiks[min].GetComponent<Renderer>().material.color) < 0)
                 {
                     min = j;
                 }
             }
 
-            Swap(min,i);
+            Swap(min, i);
         }
 
         Visualize();
     }
+
+    int CompareColors(Color colorA, Color colorB)
+    {
+        if (colorA.r != colorB.r)
+            return colorA.r.CompareTo(colorB.r);
+        if (colorA.g != colorB.g)
+            return colorA.g.CompareTo(colorB.g);
+        return colorA.b.CompareTo(colorB.b);
+    }
+
 
     public void CallQuickSort()
     {
@@ -104,15 +115,15 @@ public class NubikSorter : MonoBehaviour
     {
         int i = left;
         int j = right;
-        var pivot = _nubiks[left].transform.localScale.x;
+        var pivot = _nubiks[left].transform.position.y;
         while (i <= j)
         {
-            while (_nubiks[i].transform.localScale.x < pivot)
+            while (_nubiks[i].transform.position.y < pivot)
             {
                 i++;
             }
 
-            while (_nubiks[j].transform.localScale.x > pivot)
+            while (_nubiks[j].transform.position.y > pivot)
             {
                 j--;
             }
